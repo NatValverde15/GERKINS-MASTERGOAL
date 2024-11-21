@@ -1,0 +1,29 @@
+Feature: Inicio de sesión de usuarios registrados
+  Como usuario registrado
+  Quiero iniciar sesión en la plataforma
+  Para acceder a mis funcionalidades personalizadas.
+
+  Scenario: Inicio de sesión exitoso
+    Given el usuario está en la pantalla de inicio de sesión
+    And el sistema muestra campos para "Correo Electrónico" y "Contraseña"
+    When el usuario ingresa:
+      | Campo                | Valor                   |
+      | Correo Electrónico   | ejemplo@correo.com      |
+      | Contraseña           | ContraseñaSegura123     |
+    And hace clic en el botón "Iniciar sesión"
+    Then el sistema valida las credenciales
+    And el usuario es redirigido a su página principal
+    And se muestra el mensaje "Inicio de sesión exitoso".
+
+  Scenario: Credenciales incorrectas
+    Given el usuario está en la pantalla de inicio de sesión
+    And el sistema muestra campos para "Correo Electrónico" y "Contraseña"
+    When el usuario ingresa:
+      | Campo                | Valor                   |
+      | Correo Electrónico   | usuario@correo.com      |
+      | Contraseña           | ContraseñaErrónea123    |
+    And hace clic en el botón "Iniciar sesión"
+    Then el sistema valida las credenciales
+    And muestra un mensaje de error:
+      | Mensaje                                 |
+      | "Credenciales incorrectas. Inténtelo nuevamente." |
