@@ -1,0 +1,25 @@
+Feature: Recuperación de contraseña
+  Como usuario
+  Quiero recuperar mi contraseña en caso de olvidarla
+  Para poder acceder nuevamente a mi cuenta.
+
+  Scenario: Solicitud de recuperación de contraseña exitosa
+    Given el usuario está en la pantalla de recuperación de contraseña
+    And el sistema muestra un campo para "Correo Electrónico"
+    When el usuario ingresa:
+      | Campo                | Valor                   |
+      | Correo Electrónico   | ejemplo@correo.com      |
+    And hace clic en el botón "Enviar enlace de recuperación"
+    Then el sistema verifica que el correo esté registrado
+    And envía un enlace de recuperación al correo proporcionado
+    And se muestra el mensaje "Se ha enviado un enlace a tu correo electrónico para restablecer tu contraseña."
+
+  Scenario: Correo no registrado
+    Given el usuario está en la pantalla de recuperación de contraseña
+    And el sistema muestra un campo para "Correo Electrónico"
+    When el usuario ingresa:
+      | Campo                | Valor                   |
+      | Correo Electrónico   | usuario@noexistente.com |
+    And hace clic en el botón "Enviar enlace de recuperación"
+    Then el sistema verifica que el correo no está registrado
+    And muestra el mensaje "El correo proporcionado no está registrado. Inténtelo nuevamente."
