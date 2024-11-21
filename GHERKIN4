@@ -1,0 +1,23 @@
+Feature: Acceso a estadísticas de partidos en tiempo real
+  Como usuario
+  Quiero acceder a estadísticas en tiempo real de los partidos
+  Para estar al tanto del rendimiento de los equipos durante el partido.
+
+  Scenario: Visualización de estadísticas actualizadas
+    Given el usuario está en la pantalla del partido en vivo
+    And el sistema muestra las estadísticas del partido
+    When el partido avanza en tiempo real
+    Then las estadísticas se actualizan automáticamente cada 10 segundos
+    And se muestran métricas como:
+      | Métrica             | Ejemplo               |
+      | Posesión            | 60% - 40%            |
+      | Disparos            | 10 - 8               |
+      | Pases completados   | 250 - 230            |
+
+  Scenario: Error en la actualización de estadísticas
+    Given el usuario está en la pantalla del partido en vivo
+    And el sistema intenta actualizar las estadísticas
+    When ocurre un problema en la conexión
+    Then se muestra un mensaje de error:
+      | Mensaje                                 |
+      | "Error al cargar estadísticas. Reintentar." |
