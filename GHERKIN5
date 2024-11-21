@@ -1,0 +1,26 @@
+Feature: Configuración de preferencias de usuario
+  Como usuario
+  Quiero configurar mis preferencias personales
+  Para personalizar mi experiencia en la plataforma.
+
+  Scenario: Configuración de equipos favoritos
+    Given el usuario está en la pantalla de "Configuración de Preferencias"
+    And el sistema muestra una lista de equipos disponibles
+    When el usuario selecciona los equipos:
+      | Equipo                 |
+      | Real Madrid            |
+      | Barcelona              |
+    And hace clic en el botón "Guardar preferencias"
+    Then el sistema guarda las selecciones
+    And se muestra el mensaje "Tus preferencias han sido actualizadas con éxito."
+
+  Scenario: Configuración de jugadores favoritos
+    Given el usuario está en la pantalla de "Configuración de Preferencias"
+    And el sistema muestra una lista de jugadores disponibles
+    When el usuario selecciona los jugadores:
+      | Jugador                |
+      | Lionel Messi           |
+      | Cristiano Ronaldo      |
+    And hace clic en el botón "Guardar preferencias"
+    Then el sistema guarda las selecciones
+    And se muestra el mensaje "Tus preferencias han sido actualizadas con éxito."
