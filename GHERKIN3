@@ -1,0 +1,27 @@
+Feature: Opción de suscripción premium
+  Como usuario
+  Quiero tener la opción de suscribirme a un plan premium
+  Para acceder a contenido exclusivo y beneficios adicionales.
+
+  Scenario: Suscripción premium exitosa
+    Given el usuario está en la pantalla de suscripciones
+    And el sistema muestra los planes disponibles
+    When el usuario selecciona el plan "Premium Mensual"
+    And hace clic en el botón "Suscribirme"
+    And completa el proceso de pago con:
+      | Método de pago      | Valor                  |
+      | Tarjeta de crédito  | VISA terminada en 1234 |
+    Then el sistema valida el pago
+    And activa la suscripción premium
+    And se muestra el mensaje "¡Bienvenido al plan Premium! Disfruta de tus beneficios."
+
+  Scenario: Error en el pago
+    Given el usuario está en la pantalla de suscripciones
+    And el sistema muestra los planes disponibles
+    When el usuario selecciona el plan "Premium Anual"
+    And hace clic en el botón "Suscribirme"
+    And intenta realizar el pago con:
+      | Método de pago      | Valor                  |
+      | Tarjeta de crédito  | VISA terminada en 5678 |
+    Then el sistema rechaza el pago
+    And muestra el mensaje "El pago no pudo ser procesado. Inténtelo nuevamente."
