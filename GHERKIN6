@@ -1,0 +1,20 @@
+Feature: Notificaciones personalizadas para usuarios
+  Como usuario
+  Quiero recibir notificaciones personalizadas
+  Para estar al tanto de eventos importantes según mis preferencias.
+
+  Scenario: Activar notificaciones de partidos
+    Given el usuario está en la pantalla de configuración de notificaciones
+    And el sistema muestra las opciones disponibles
+    When el usuario activa la opción "Notificaciones de partidos"
+    And hace clic en "Guardar cambios"
+    Then el sistema guarda la configuración
+    And se muestra el mensaje "Tus notificaciones han sido configuradas."
+
+  Scenario: Desactivar todas las notificaciones
+    Given el usuario está en la pantalla de configuración de notificaciones
+    And el sistema muestra las opciones actualmente activadas
+    When el usuario desactiva todas las opciones
+    And hace clic en "Guardar cambios"
+    Then el sistema guarda la configuración
+    And no se envían notificaciones futuras al usuario.
